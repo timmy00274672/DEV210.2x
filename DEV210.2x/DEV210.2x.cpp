@@ -2,10 +2,13 @@
 
 #include "stdafx.h"
 #include <iostream>
+#include "Person.h"
 using namespace std;
 
 void PassByValue(int);
 void PassByRef(int*);
+void ModifyPerson(Person*);
+
 int main() {
 	/// for quiz 1-15
 	int num1 = 3;
@@ -24,7 +27,12 @@ int main() {
 	delete pDouble; //Deallocate the memory for that variable.
 	printf("in main, *after deallocate, value = %f\n", *pDouble);
 
-
+	/// for quiz 24-31
+	Person *p = new Person("Tim", 18, 60, 168);
+	printf("Person name (%s) Age:%d \n", p->name.c_str(), p->age);
+	ModifyPerson(p);
+	printf("Person name (%s) Age:%d \n", p->name.c_str(), p->age);
+	
 	return 0;
 }
 
@@ -36,4 +44,9 @@ void PassByValue(int num) {
 void PassByRef(int* num) {
 	cout << "in PassByRef (" << *num << ")" << endl;
 	*num = 50;
+}
+
+void ModifyPerson(Person* pPerson) {
+	cout << "in ModifyPerson";
+	pPerson->name = "Stupid";
 }
